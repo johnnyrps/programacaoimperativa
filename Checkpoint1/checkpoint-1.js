@@ -77,10 +77,8 @@ function microondas(prato, tempo){
             console.log("Prato inexiste");
     }
 }
-
-microondas("feijão", 20);
-microondas("brigadeiro", 20);
-microondas("carne", 20);
-microondas("macarrão", 20);
-microondas("pipoca", 40);
-microondas("outro prato", 20);
+microondas("feijão", 30);
+microondas("feijão", 1);
+microondas("feijão", 40);
+microondas("feijão1", 15);
+microondas("feijão", 15);

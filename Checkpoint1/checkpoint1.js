@@ -5,20 +5,18 @@ let feijão = 12;
 let brigadeiro = 8;
 
 function microondas(tempo, prato){
-    if(prato *2){
-        console.log("A comida queimou!")
+    if(tempo > prato *2){
+        console.log("A comida queimou!");
+    
+    } else if (tempo > prato *3){
+        console.log("Kabuuumm")
     
     }else if (tempo < prato){
         console.log("Tempo insuficiente!")
     
-    } else if (prato *3 < tempo){
-        console.log("Kabuuumm")
-    }
-    else{
+}else {
         console.log("Prato pronto, bom apetite !!!");
     }
 
-    
-
-}
+};
 microondas(45, carne);
