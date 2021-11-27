@@ -90,5 +90,7 @@ function criaListaContas(contas) {
   }
   
   appendListaContas(40430,'Conta Corrente', 10000, 'Johnny Pecego');
-  
-  console.log(banco.consultarCliente("Jarret Lafuente"));
+
+  console.log(banco.clientes);
+
+//   console.log(banco.consultarCliente("Jarret Lafuente"));
