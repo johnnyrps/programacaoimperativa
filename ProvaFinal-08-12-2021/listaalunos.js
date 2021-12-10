@@ -8,4 +8,4 @@ let cadastro2 = require('./moduloaluno');
     listaAlunos.push(new cadastro2.cadastro('Katy',3, [8, 7, 10]));
     listaAlunos.push(new cadastro2.cadastro('Pedro',1, [8, 8, 7]));
 
-    module.exports = listaAlunos;
+    module.exports = listaAlunos
