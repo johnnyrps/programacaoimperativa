@@ -1,51 +1,38 @@
-let listaEstudantes = JSON.parse(require("./listaalunos"));
-let Aluno = require("./moduloaluno");
+const addCadastro = require('./moduloaluno');
+const listaAlunos = require('./listaalunos');
 
-
-function Curso(nomeDoCurso, notaApr, faltaMax, listaAlunos=[]) {
-    this.nomeDoCurso = nomeDoCurso;
-    this.notaApr = notaApr;
-    this.faltaMax = faltaMax;
-    this.listaAlunos = listaAlunos;
-
-    this.addAluno = (nome, faltas, notas) => {
-        this.listaAlunos.push(new Aluno(nome, faltas, notas));
-    };
-
-    this.aprovado = (nome) => {
-
-        let aluno = this.listaAlunos.find((procuraAluno) => procuraAluno.nome === nome);
+const curso = {
+    nomeCurso: 'CTD',
+    notaAprovacao: 7,
+    faltaMaxima: 5, 
+    listaEstudantes: listaAlunos,
+    adicionarAluno: function(nome, qtdFalta, notas){
+      this.listaEstudantes.push(new addCadastro.cadastro(nome, qtdFalta, notas));
+    },
+    alunoPassou: function (objeto) {
+        let falta = objeto.qtdFalta;
+        let mediaAluno = addCadastro.calcularMedia(objeto.notas);
         
-        return (
-            (aluno.media >= this.notaApr && aluno.faltas < this.faltaMax) ||
-            (aluno.faltas === this.faltaMax && aluno.media >= this.notaApr * 1.1)
-        );
-    };
-
-    this.listaAprovados = () => {
-        return this.listaAlunos.map((item) => {
-            return (
-                (item.media >= this.notaApr &&
-                    item.faltas < this.faltaMax) ||
-                (item.faltas === this.faltaMax &&
-                    item.media >= this.notaApr * 1.1)
-            );
-        });
-    };
+        if (mediaAluno >= this.notaAprovacao && falta < this.faltaMaxima) {
+            return true;
+        } else if (falta == this.faltaMaxima && mediaAluno > 1.1*this.notaAprovacao) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    listaAprovados: function () {
+        let lista = [];
+        for (let index = 0; index < this.listaEstudantes.length; index++) {
+            lista.push(this.alunoPassou(this.listaEstudantes[index]));
+        };
+        return lista;
+    },
 }
 
-function adicionarEstudante(lista, curso) {
-    for (i = 0; i < lista.length; i++) {
-        curso.addAluno(lista[i].nome, lista[i].qtdFaltas, lista[i].notas);
-        // console.log(curso);
-    }
-    return curso;
-}
+curso.adicionarAluno("Debora", 5, [8,9,10]);
+curso.adicionarAluno("Thiago", 2, [2,7,10]);
 
-let curso = new Curso("ctd", 8, 4);
+console.log (curso.alunoPassou(curso.listaEstudantes[3]));
 
-adicionarEstudante(listaEstudantes, curso);
-console.log(curso)
-
-console.log(curso.aprovado("moises bollela"));
 console.log(curso.listaAprovados());

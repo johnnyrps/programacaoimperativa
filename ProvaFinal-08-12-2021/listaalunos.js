@@ -1,10 +1,11 @@
-    listaEstudantes = [
-        { nome: "Johnny", faltas: 3, notas: [10, 7, 9] },
-        { nome: "Lucas", faltas: 4, notas: [9, 8, 9] },
-        { nome: "Jadson", faltas: 3, notas: [7.5, 9, 7.8] },
-        { nome: "Katy", faltas: 2, notas: [6.5, 8, 7] },
-        { nome: "Pedro", faltas: 1, notas: [10, 9,6.5] }
-        
-    ];
+let cadastro2 = require('./moduloaluno');
 
-    module.exports = JSON.stringify(listaEstudantes);
+    let listaAlunos = [];
+
+    listaAlunos.push(new cadastro2.cadastro('Johnny',0, [9, 10, 10]));
+    listaAlunos.push(new cadastro2.cadastro('Lucas',3, [10, 9.75, 10]));
+    listaAlunos.push(new cadastro2.cadastro('Jadson',1, [10, 10, 10]));
+    listaAlunos.push(new cadastro2.cadastro('Katy',3, [8, 7, 10]));
+    listaAlunos.push(new cadastro2.cadastro('Pedro',1, [8, 8, 7]));
+
+    module.exports = listaAlunos;
